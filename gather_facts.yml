@@ -1,0 +1,9 @@
+---
+- name: Gather Facts about Nodes
+  hosts: student1-win1
+  become: yes
+  become_user: root
+
+  tasks:
+    - name: Gather facts
+      setup:
