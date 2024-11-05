@@ -1,18 +1,27 @@
 ---
 - name: Gather facts about a RHEL host
   hosts: node1,node2,node3
-  become: yes  
-  gather_facts: yes  
+  become: yes  # Elevates privilege to gather more details
+  gather_facts: yes  # Enables fact-gathering
 
   tasks:
-    - name: Display collected facts for each node
+    - name: Display collected facts
       debug:
-        var: ansible_facts
+        var: ansible_facts  # Shows all gathered facts
 
-   - name: Display specific facts
+    # Optional: Gather specific facts only
+    - name: Display Operating System version
       debug:
-         msg:
-      - "Hostname: {{ ansible_facts['ansible_hostname'] | default('undefined') }}"
-      - "OS Version: {{ ansible_facts['ansible_distribution_version'] | default('undefined') }}"
-      - "IP Address: {{ ansible_facts['ansible_default_ipv4']['address'] | default('undefined') }}"
-      - "Total Memory: {{ ansible_facts['ansible_memtotal_mb'] | default('undefined') }} MB"
+        msg: "OS Version: {{ ansible_facts['ansible_distribution_version'] }}"
+
+    - name: Display Hostname
+      debug:
+        msg: "Hostname: {{ ansible_facts['ansible_hostname'] }}"
+
+    - name: Display IP Address
+      debug:
+        msg: "IP Address: {{ ansible_facts['ansible_default_ipv4']['address'] }}"
+
+    - name: Display Total Memory
+      debug:
+        msg: "Total Memory: {{ ansible_facts['ansible_memtotal_mb'] }} MB"
