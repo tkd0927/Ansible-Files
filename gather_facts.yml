@@ -1,9 +1,26 @@
 ---
-- name: Gather Facts about Nodes
-  hosts: student1-win1
-  become: yes
-  become_user: root
+- name: Gather facts about a RHEL host
+  hosts: node1, node2, node3
+  become: yes  
+  gather_facts: yes  
 
   tasks:
-    - name: Gather facts
-      setup:
+    - name: Display collected facts
+      debug:
+        var: ansible_facts  
+
+    - name: Display Operating System version
+      debug:
+        msg: "OS Version: {{ ansible_facts['ansible_distribution_version'] }}"
+
+    - name: Display Hostname
+      debug:
+        msg: "Hostname: {{ ansible_facts['ansible_hostname'] }}"
+
+    - name: Display IP Address
+      debug:
+        msg: "IP Address: {{ ansible_facts['ansible_default_ipv4']['address'] }}"
+
+    - name: Display Total Memory
+      debug:
+        msg: "Total Memory: {{ ansible_facts['ansible_memtotal_mb'] }} MB"
