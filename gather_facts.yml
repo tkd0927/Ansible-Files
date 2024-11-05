@@ -10,8 +10,8 @@
         var: ansible_facts
 
    - name: Display specific facts
-  debug:
-    msg:
+      debug:
+         msg:
       - "Hostname: {{ ansible_facts['ansible_hostname'] | default('undefined') }}"
       - "OS Version: {{ ansible_facts['ansible_distribution_version'] | default('undefined') }}"
       - "IP Address: {{ ansible_facts['ansible_default_ipv4']['address'] | default('undefined') }}"
