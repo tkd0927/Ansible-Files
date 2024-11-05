@@ -12,16 +12,16 @@
     # Optional: Gather specific facts only
     - name: Display Operating System version
       debug:
-        msg: "OS Version: {{ ansible_facts['ansible_distribution_version'] }}"
+        msg: "OS Version: {{ ansible_facts['ansible_distribution_version'] | default('undefined') }}"
 
     - name: Display Hostname
       debug:
-        msg: "Hostname: {{ ansible_facts['ansible_hostname'] }}"
+        msg: "Hostname: {{ ansible_facts['ansible_hostname'] | default('undefined') }}"
 
     - name: Display IP Address
       debug:
-        msg: "IP Address: {{ ansible_facts['ansible_default_ipv4']['address'] }}"
+        msg: "IP Address: {{ ansible_facts['ansible_default_ipv4']['address'] | default('undefined') }}"
 
     - name: Display Total Memory
       debug:
-        msg: "Total Memory: {{ ansible_facts['ansible_memtotal_mb'] }} MB"
+        msg: "Total Memory: {{ ansible_facts['ansible_memtotal_mb'] | default('undefined') }} MB"
