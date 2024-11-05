@@ -9,10 +9,10 @@
       debug:
         var: ansible_facts
 
-    - name: Display specific facts
-      debug:
-        msg:
-          - "Hostname: {{ ansible_facts['ansible_hostname'] }}"
-          - "OS Version: {{ ansible_facts['ansible_distribution_version'] }}"
-          - "IP Address: {{ ansible_facts['ansible_default_ipv4']['address'] }}"
-          - "Total Memory: {{ ansible_facts['ansible_memtotal_mb'] }} MB"
+   - name: Display specific facts
+  debug:
+    msg:
+      - "Hostname: {{ ansible_facts['ansible_hostname'] | default('undefined') }}"
+      - "OS Version: {{ ansible_facts['ansible_distribution_version'] | default('undefined') }}"
+      - "IP Address: {{ ansible_facts['ansible_default_ipv4']['address'] | default('undefined') }}"
+      - "Total Memory: {{ ansible_facts['ansible_memtotal_mb'] | default('undefined') }} MB"
