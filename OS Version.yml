@@ -1,0 +1,13 @@
+---
+- name: Display OS information for each node
+  hosts: node1,node2,node3  # Specify your target nodes here
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: Show OS name and version
+      debug:
+        msg:
+          - "Hostname: {{ ansible_facts['ansible_hostname'] }}"
+          - "Operating System: {{ ansible_facts['ansible_distribution'] }}"
+          - "OS Version: {{ ansible_facts['ansible_distribution_version'] }}"
