@@ -1,0 +1,16 @@
+---
+- name: Gather facts about Juniper Mist AP
+  hosts: localhost
+  gather_facts: yes
+  vars:
+    mist_api_token: "YOUR_MIST_API_TOKEN"  # Replace with your Mist API token
+    site_id: "YOUR_SITE_ID"                # Replace with the site ID where the AP is located
+    ap_mac: "AP_MAC_ADDRESS"               # Replace with the MAC address of the AP
+
+  tasks:
+    - name: Get AP details from Mist API
+      uri:
+        url: "https://api.mist.com/api/v1/sites/{{ site_id }}/devices"
+        headers:
+          Authorization: "Token {{ mist_api_token }}"
+    
