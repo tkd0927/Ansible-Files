@@ -1,0 +1,10 @@
+---
+- name: Check RHEL version
+  hosts: node1,node2,node3  # Specify your target nodes here
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: Display RHEL version
+      debug:
+        msg: "RHEL Version: {{ ansible_facts['ansible_distribution_version'] }}"
