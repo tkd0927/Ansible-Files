@@ -1,0 +1,10 @@
+---
+- name: Start node1 using IPMI
+  hosts: localhost
+  tasks:
+    - name: Power on node1
+      community.general.ipmi_power:
+        user: "admin"                  # Replace with your IPMI user
+        password: "your_password"      # Replace with your IPMI password
+        host: "ip_of_node1"           # Replace with the IP address of node1's BMC (Baseboard Management Controller)
+        state: on
