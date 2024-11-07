@@ -1,0 +1,8 @@
+---
+- name: Restart a node
+  hosts: node1,node2,node3 # Replace 'node1' with your target node(s) like 'node2', 'node3', or groups
+  become: yes   # Ensures the command runs with elevated privileges if required
+  tasks:
+    - name: Restart the node
+      ansible.builtin.shell: /sbin/reboot
+      ignore_errors: yes  # Optional: Allows playbook to continue if this task fails
